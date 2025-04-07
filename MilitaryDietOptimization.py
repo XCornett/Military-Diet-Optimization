@@ -5,7 +5,7 @@ from datetime import datetime
 # Loading in data
 df = pd.read_excel("insert file location here").fillna(0)
 
-# Droping the last two rows (they contain min/max nutrient constraints, not food items)
+# Dropping the last two rows (they contain min/max nutrient constraints, not food items)
 food_df = df.iloc[:-2].copy()
 
 # Extracting the last two rows for min/max nutrient requirements
@@ -22,7 +22,7 @@ nutrients = df.columns[3:]
 # Storing nutrient content for each food in dictionary
 nutrient_data = {n: dict(zip(food_df["Foods"], food_df[n])) for n in nutrients}
 
-# Initializeing the optimization problem
+# Initializing the optimization problem
 problem = pulp.LpProblem("Cheapest_Diet", pulp.LpMinimize)
 
 # Defining decision variables (how much of each food to include in the diet)
